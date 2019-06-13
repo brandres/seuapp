@@ -61,8 +61,11 @@
             <Button
                     android:text="UNSUB"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/bton_unsub"/>
+                    android:layout_height="wrap_content" android:id="@+id/btn_unsub" android:onClick="unsubscribe"/>
         </LinearLayout>
+        <TextView
+                android:layout_width="350dp"
+                android:layout_height="60dp" android:id="@+id/fld_message" android:visibility="visible"/>
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

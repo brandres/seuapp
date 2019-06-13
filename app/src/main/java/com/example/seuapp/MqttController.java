@@ -9,35 +9,15 @@ public class MqttController {
 
     public MqttAndroidClient mqttAndroidClient;
 
-    public MqttController(Context context, String url, String clientId) {
+    public MqttController(Context context, String url, String clientId,MqttCallbackExtended callback) {
         mqttAndroidClient = new MqttAndroidClient(context, url, clientId);
-        mqttAndroidClient.setCallback(new MqttCallbackExtended() {
-            @Override
-            public void connectComplete(boolean b, String s) {
-                Log.w("mqtt", s);
-            }
-
-            @Override
-            public void connectionLost(Throwable throwable) {
-
-            }
-
-            @Override
-            public void messageArrived(String topic, MqttMessage mqttMessage) throws Exception {
-                Log.w("Mqtt", mqttMessage.toString());
-            }
-
-            @Override
-            public void deliveryComplete(IMqttDeliveryToken iMqttDeliveryToken) {
-
-            }
-        });
+        mqttAndroidClient.setCallback(callback);
     }
 
     public void connectMqtt() {
         MqttConnectOptions mqttConnectOptions = new MqttConnectOptions();
         mqttConnectOptions.setAutomaticReconnect(true);
-        mqttConnectOptions.setCleanSession(false);
+        mqttConnectOptions.setCleanSession(true);
 
         try {
 
