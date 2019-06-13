@@ -32,7 +32,6 @@ public class MqttController {
 
             }
         });
-        connectMqtt();
     }
 
     public void connectMqtt() {
@@ -45,7 +44,7 @@ public class MqttController {
             mqttAndroidClient.connect(mqttConnectOptions, null, new IMqttActionListener() {
                 @Override
                 public void onSuccess(IMqttToken asyncActionToken) {
-
+                    Log.w("Mqtt", "Subscribed success!");
                     DisconnectedBufferOptions disconnectedBufferOptions = new DisconnectedBufferOptions();
                     disconnectedBufferOptions.setBufferEnabled(true);
                     disconnectedBufferOptions.setBufferSize(100);
@@ -57,13 +56,14 @@ public class MqttController {
                 @Override
                 public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
                     Log.w("Mqtt", "Subscribed fail!");
+                    Log.w("Mqtt",exception.getMessage());
                 }
             });
         }catch(Exception e){
             System.out.println(e.getStackTrace());
         }
     }
-    private void subscribeTo(String topic) {
+    public void subscribeTo(String topic) {
         try {
             mqttAndroidClient.subscribe(topic, 0, null, new IMqttActionListener() {
                 @Override
@@ -80,6 +80,13 @@ public class MqttController {
         } catch (MqttException ex) {
             System.err.println("Exception whilst subscribing");
             ex.printStackTrace();
+        }
+    }
+    public void unsubscribe(String topic){
+        try {
+            mqttAndroidClient.unsubscribe(topic);
+        } catch (MqttException e) {
+            e.printStackTrace();
         }
     }
 }
