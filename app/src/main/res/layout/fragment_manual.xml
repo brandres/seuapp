@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+                                             android:layout_height="match_parent">
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="388dp"
+            android:layout_height="526dp"
+            android:gravity="center|top" android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/navigation">
+        <TextView
+                android:text="APP SEU MQTT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" tools:layout_editor_absoluteY="39dp"
+                tools:layout_editor_absoluteX="162dp" android:id="@+id/textView"/>
+        <EditText
+                android:layout_width="364dp"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/fld_url" android:hint="URL"/>
+        <Button
+                android:text="conectar"
+                android:layout_width="109dp"
+                android:layout_height="wrap_content" android:id="@+id/btn_conectar"
+                android:onClick="connectMqttBroker"/>
+        <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                tools:layout_editor_absoluteY="98dp" tools:layout_editor_absoluteX="108dp" android:id="@+id/fld_topic"
+                android:hint="Topic"/>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:gravity="center">
+            <Button
+                    android:text="SUB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" tools:layout_editor_absoluteY="182dp"
+                    tools:layout_editor_absoluteX="161dp" android:id="@+id/btn_sub"
+                    android:onClick="subscribe"
+            />
+            <Button
+                    android:text="UNSUB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/btn_unsub" android:onClick="unsubscribe"/>
+        </LinearLayout>
+        <TextView
+                android:layout_width="350dp"
+                android:layout_height="60dp" android:id="@+id/fld_message" android:visibility="visible"
+                android:text="dsdsd" android:textAppearance="@style/TextAppearance.AppCompat.Display1"/>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

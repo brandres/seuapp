@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">seuapp</string>
+    <string name="app_name">Brandon MQTT app</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_dashboard">Manual</string>
+    <string name="title_notifications">Sandbox</string>
 </resources>
