@@ -1,6 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
                                              android:layout_width="match_parent"
                                              android:layout_height="match_parent">
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" android:gravity="center|top">
+        <TextView
+                android:text="Controles MQTT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/textView2"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2" android:layout_marginBottom="50dp"/>
+        <TextView
+                android:text="LEDS"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/textView3"/>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="34dp" android:layout_marginBottom="30dp">
+            <ToggleButton
+                    android:text="LED1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/toggleButton2" android:layout_weight="1"/>
+            <ToggleButton
+                    android:text="LED2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/toggleButton3" android:layout_weight="1"/>
+        </LinearLayout>
+        <TextView
+                android:text="TEMPERATURA"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/textView4"/>
+        <TextView
+                android:text="TEMP_PLACEHOLDER"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/textView5"/>
+        <com.github.mikephil.charting.charts.LineChart android:layout_width="match_parent"
+                                                       android:layout_height="114dp"
+                                                       android:layout_marginBottom="30dp" android:id="@+id/temp_chart"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/textView6" android:text="POTENCIOMETRO"
+        />
+        <TextView
+                android:text="POTEN_PLACEHOLDER"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        <com.github.mikephil.charting.charts.LineChart android:layout_width="match_parent"
+                                                       android:layout_height="114dp"
+                                                       android:layout_marginBottom="30dp"
+                                                       android:id="@+id/poten_chart"/>
+        <TextView
+                android:text="LUZ"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        <TextView
+                android:text="LUZ PLACEHOLDER"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/textView9"/>
+        <com.github.mikephil.charting.charts.LineChart android:layout_width="match_parent"
+                                                       android:layout_height="114dp"
+                                                       android:layout_marginBottom="30dp" android:id="@+id/luz_chart"/>
+    </LinearLayout>
+</RelativeLayout>
