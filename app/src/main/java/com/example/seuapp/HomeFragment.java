@@ -8,15 +8,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.LineData;
-import com.github.mikephil.charting.data.LineDataSet;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallbackExtended;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class HomeFragment extends Fragment {
 
@@ -37,25 +31,20 @@ public class HomeFragment extends Fragment {
         luzChart = new MqttChart((LineChart)w.findViewById(R.id.luz_chart));
         connectMqttBroker();
         subscribeAll();
-        entries.add(new Entry(indiceGlobal,));
-        LineDataSet dataSet = new LineDataSet(entries, "Label");
-        LineData lineData = new LineData(dataSet);
-        tempChart.setData(lineData);
-        tempChart.invalidate();
         return w;
     }
 
-    public void connectMqttBroker() {
+    private void connectMqttBroker() {
         broker = new MqttController(getContext(), URL, "clientid",getCallback());
         broker.connectMqtt();
     }
-    public void subscribeAll(){
+    private void subscribeAll(){
         broker.subscribeTo(TEMP_TOPIC);
         broker.subscribeTo(POTEN_TOPIC);
         broker.subscribeTo(LUZ_TOPIC);
     }
 
-    public MqttCallbackExtended getCallback() {
+    private MqttCallbackExtended getCallback() {
         return new MqttCallbackExtended() {
             @Override
             public void connectComplete(boolean b, String s) {
@@ -68,16 +57,19 @@ public class HomeFragment extends Fragment {
             }
 
             @Override
-            public void messageArrived(String topic, MqttMessage mqttMessage) throws Exception {
+            public void messageArrived(String topic, MqttMessage mqttMessage) {
                 switch (topic){
                     case TEMP_TOPIC:
-                        tempChart.entries.add(new Entry(tempChart.indiceGlobal++, Float.parseFloat(mqttMessage.toString())));
+                        tempChart.addEntry(Float.parseFloat(mqttMessage.toString()));
+                        tempChart.setChartData();
                         break;
                     case POTEN_TOPIC:
-                        potenChart.entries.add(new Entry(potenChart.indiceGlobal++, Float.parseFloat(mqttMessage.toString())));
+                        potenChart.addEntry(Float.parseFloat(mqttMessage.toString()));
+                        potenChart.setChartData();
                         break;
                     case LUZ_TOPIC:
-                        luzChart.entries.add(new Entry(luzChart.indiceGlobal++, Float.parseFloat(mqttMessage.toString())));
+                        luzChart.addEntry(Float.parseFloat(mqttMessage.toString()));
+                        luzChart.setChartData();
                         break;
                     default: break;
                 }
